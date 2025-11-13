@@ -1,0 +1,216 @@
+(defcfg
+  windows-altgr cancel-lctl-press
+  process-unmapped-keys yes
+  concurrent-tap-hold yes
+  log-layer-changes no
+)
+
+(defchordsv2
+  (lctl lalt ,) (layer-switch coding) 1000 first-release ()
+  (lctl lalt .) (layer-switch base) 1000 first-release ()
+)
+
+(deflocalkeys-win
+  §   220
+  +   187
+  ´   219
+  å   221
+  ¨   186
+  ö   192
+  ä   222
+  '   191
+  <   226
+  ,   188
+  .   190
+  -   189
+)
+
+(defsrc
+  esc
+  §    1    2    3    4    5    6    7    8    9    0    +    ´    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    å    ¨
+  caps a    s    d    f    g    h    j    k    l    ö    ä    '    ret
+  lsft <    z    x    c    v    b    n    m    ,    .    -         rsft
+  lctl lmet lalt                spc                 ralt rmet menu rctl
+)
+
+;; home row mods
+(defvar
+  tap-time 150
+  hold-time-base 150
+  hold-time-slow 400
+
+  left-hand-keys (
+    q w e r t
+    a s d f g
+    z x c v b
+  )
+  right-hand-keys (
+    y u i o p å
+    h j k l ö
+    n m , . ä
+  )
+)
+
+(deflayer base
+  caps
+  lrld  @1  @2   @3   @4   @5   @6   @7   @8   @9   @0   _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  @esc  @a   @s   @d   @f   _    _    @j   @k   @l   @ö   _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _         _
+  _    _    _                   _                  @ralt-a _    _    _
+)
+
+(deflayer nomods
+  caps
+  lrld _    2    3    _    _    _    7    8    9    0    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  esc  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _         _
+  _    _    _                   _                   _    _    _    _
+)
+
+(defalias
+  tap (multi
+    (layer-switch nomods)
+    (on-idle-fakekey to-base tap 20)
+  )
+
+  a (tap-hold-release-keys $tap-time $hold-time-slow (multi a @tap) lmet $left-hand-keys)
+  s (tap-hold-release-keys $tap-time $hold-time-slow (multi s @tap) lalt $left-hand-keys)
+  d (tap-hold-release-keys $tap-time $hold-time-slow (multi d @tap) lctl $left-hand-keys)
+  f (tap-hold-release-keys $tap-time $hold-time-base (multi f @tap) (multi lsft (layer-while-held shift-layer)) $left-hand-keys)
+  j (tap-hold-release-keys $tap-time $hold-time-base (multi j @tap) (multi rsft (layer-while-held shift-layer)) $right-hand-keys)
+  k (tap-hold-release-keys $tap-time $hold-time-base (multi k @tap) rctl $right-hand-keys)
+  l (tap-hold-release-keys $tap-time $hold-time-slow (multi l @tap) lalt $right-hand-keys)
+  ö (tap-hold-release-keys $tap-time $hold-time-slow (multi ö @tap) rmet $right-hand-keys)
+)
+
+(deflayer coding
+  caps
+  lrld  @1  @2   @3   @4   @5   @6   @7   @8   @9   @0   _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    @åc   @¨c 
+  @escc  @ac   @sc   @dc   @fc   _    _    @jc   @kc   @lc   @öc   @äc    _    _
+  _    @<c    _    _    _    _    _    _    _    _    _    _         _
+  _    _    _                   _                   @ralt-a    _    _    _
+)
+
+(deflayer nomods-coding
+  caps
+  lrld _    2    3    _    _    _    7    8    9    0    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    [    ]
+  esc  _    _    _    _    _    _    _    _    _    ;    \    _    _
+  _    @<c    _    _    _    _    _    _    _    _    _    _         _
+  _    _    _                   _                   _    _    _    _
+)
+
+(deflayer shift-layer-coding
+  caps
+  _    @s1  @s2  @s3  @s4  @s5  @s6  @s7  @s8  @s9  @s0   _    _    _
+  _    _    _    _    _    _    _    _    _    _    _     @Åc  @^c 
+  esc  @ac  @sc  @dc  @fc  _    _    @jc  @kc  @lc  @Öc   @Äc  _    _
+  _    @>c  _    _    _    _    _    _    _    @;c  @:c    _        _
+  _    _    _                   _                   _      _    _    _
+)
+
+(defalias
+  tapc (multi
+    (layer-switch nomods-coding)
+    (on-idle-fakekey to-coding tap 20)
+  )
+
+  ac (tap-hold-release-keys $tap-time $hold-time-slow (multi a @tapc) lmet $left-hand-keys)
+  sc (tap-hold-release-keys $tap-time $hold-time-slow (multi s @tapc) lalt $left-hand-keys)
+  dc (tap-hold-release-keys $tap-time $hold-time-slow (multi d @tapc) lctl $left-hand-keys)
+  fc (tap-hold-release-keys $tap-time $hold-time-base (multi f @tapc) (multi lsft (layer-while-held shift-layer-coding)) $left-hand-keys)
+  jc (tap-hold-release-keys $tap-time $hold-time-base (multi j @tapc) (multi rsft (layer-while-held shift-layer-coding)) $right-hand-keys)
+  kc (tap-hold-release-keys $tap-time $hold-time-base (multi k @tapc) rctl $right-hand-keys)
+  lc (tap-hold-release-keys $tap-time $hold-time-slow (multi l @tapc) lalt $right-hand-keys)
+  
+  ;; unshifted coding aliases
+  åc (multi ralt 8)
+  ¨c (multi ralt 9)
+  öc (multi lsft ,)
+  äc (multi ralt +)
+  <c (multi lsft ¨)
+
+  ;; shifted coding aliases
+  Åc (multi (unshift ralt 7))
+  ^c (multi (unshift ralt 0))
+  Öc (multi (unshift lsft .))
+  Äc (multi (unshift ralt <))
+  >c (multi (unshift ralt ¨))
+  ;c (unshift <)
+  :c (multi lsft <)
+
+)
+(deffakekeys
+  to-base (layer-switch base)
+  to-coding (layer-switch coding)
+)
+
+
+;; Arrow layer
+(defvar
+  arrow-toggle-time 250
+)
+
+(deflayer arrow
+  caps
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _ @exit-arrow    _    _    _    _
+  esc  _    _    _    _    _ @left    @down   @up   @right   @ö    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _         _
+  _    _    _                   _                   _    _    _    _
+)
+
+(defalias
+  right rght
+  down down
+  up up
+  left lft
+
+  exit-arrow (layer-switch base)
+  esc (tap-hold $tap-time 500 esc (layer-switch arrow))
+  escc (tap-hold $tap-time 500 esc (layer-switch arrow))
+  
+)
+
+;; Number row shift switching 
+
+(deflayer shift-layer
+  caps
+  _    @s1  @s2   @s3    @s4   @s5   @s6   @s7   @s8   @s9   @s0   _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  esc  @a   @s   @d   @f   _    h    @j   @k   @l   @ö   _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _         _
+  _    _    _                   _                   _    _    _    _
+)
+
+(defalias
+  ralt-a (multi ralt (layer-while-held nomods)) ;;altgr
+  lsft-a (multi lsft (layer-while-held shift-layer)) ;; enter layer for non shifted number
+
+  ;; Shift switch number row
+  1 (multi lsft 1)
+  2 (multi lsft 2)
+  3 (multi lsft 3)
+  4 (multi ralt 4)
+  5 (multi lsft 5)
+  6 (multi lsft 6)
+  7 (multi lsft 7)
+  8 (multi lsft 8)
+  9 (multi lsft 9)
+  0 (multi lsft 0)
+
+  s1 (unshift 1)
+  s2 (unshift 2)
+  s3 (unshift 3)
+  s4 (unshift 4)
+  s5 (unshift 5)
+  s6 (unshift 6)
+  s7 (unshift 7)
+  s8 (unshift 8)
+  s9 (unshift 9)
+  s0 (unshift 0)
+)

@@ -189,7 +189,7 @@
 
 (defalias
   ralt-a (multi ralt (layer-while-held nomods)) ;;altgr
-  lsft-a (multi lsft (layer-while-held shift-layer)) ;; enter layer for non shifted number
+;;  lsft-a (multi lsft (layer-while-held shift-layer)) ;; enter layer for non shifted number
 
   ;; Shift switch number row
   1 (multi lsft 1)

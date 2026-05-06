@@ -36,8 +36,8 @@
 
 ;; home row mods
 (defvar
-  tap-time 150
-  hold-time-base 150
+  tap-time 125
+  hold-time-base 125
   hold-time-slow 400
 
   left-hand-keys (
@@ -192,16 +192,16 @@
 ;;  lsft-a (multi lsft (layer-while-held shift-layer)) ;; enter layer for non shifted number
 
   ;; Shift switch number row
-  1 (multi lsft 1)
-  2 (multi lsft 2)
-  3 (multi lsft 3)
-  4 (multi ralt 4)
-  5 (multi lsft 5)
-  6 (multi lsft 6)
-  7 (multi lsft 7)
-  8 (multi lsft 8)
-  9 (multi lsft 9)
-  0 (multi lsft 0)
+  1 (fork (multi lsft 1) (unshift 1) (lsft rsft))
+  2 (fork (multi lsft 2) (unshift 2) (lsft rsft))
+  3 (fork (multi lsft 3) (unshift 3) (lsft rsft))
+  4 (fork (multi ralt 4) (unshift 4) (lsft rsft))
+  5 (fork (multi lsft 5) (unshift 5) (lsft rsft))
+  6 (fork (multi lsft 6) (unshift 6) (lsft rsft))
+  7 (fork (multi lsft 7) (unshift 7) (lsft rsft))
+  8 (fork (multi lsft 8) (unshift 8) (lsft rsft))
+  9 (fork (multi lsft 9) (unshift 9) (lsft rsft))
+  0 (fork (multi lsft 0) (unshift 0) (lsft rsft))
 
   s1 (unshift 1)
   s2 (unshift 2)

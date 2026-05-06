@@ -36,9 +36,10 @@
 
 ;; home row mods
 (defvar
-  tap-time 125
-  hold-time-base 125
+  tap-time 150
+  hold-time-base 150
   hold-time-slow 400
+  hold-time-win 500
 
   left-hand-keys (
     q w e r t
@@ -76,7 +77,7 @@
     (on-idle-fakekey to-base tap 20)
   )
 
-  a (tap-hold-release-keys $tap-time $hold-time-slow (multi a @tap) lmet $left-hand-keys)
+  a (tap-hold-release-keys $tap-time $hold-time-win (multi a @tap) lmet $left-hand-keys)
   s (tap-hold-release-keys $tap-time $hold-time-slow (multi s @tap) lalt $left-hand-keys)
   d (tap-hold-release-keys $tap-time $hold-time-slow (multi d @tap) lctl $left-hand-keys)
   f (tap-hold-release-keys $tap-time $hold-time-base (multi f @tap) (multi lsft (layer-while-held shift-layer)) $left-hand-keys)
@@ -119,7 +120,7 @@
     (on-idle-fakekey to-coding tap 20)
   )
 
-  ac (tap-hold-release-keys $tap-time $hold-time-slow (multi a @tapc) lmet $left-hand-keys)
+  ac (tap-hold-release-keys $tap-time $hold-time-win (multi a @tapc) lmet $left-hand-keys)
   sc (tap-hold-release-keys $tap-time $hold-time-slow (multi s @tapc) lalt $left-hand-keys)
   dc (tap-hold-release-keys $tap-time $hold-time-slow (multi d @tapc) lctl $left-hand-keys)
   fc (tap-hold-release-keys $tap-time $hold-time-base (multi f @tapc) (multi lsft (layer-while-held shift-layer-coding)) $left-hand-keys)

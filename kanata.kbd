@@ -89,10 +89,10 @@
 
 (deflayer coding
   caps
-  lrld  @1  @2   @3   @4   @5   @6   @7   @8   @9   @0   _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    @åc   @¨c 
-  @escc  @ac   @sc   @dc   @fc   _    _    @jc   @kc   @lc   @öc   @äc    _    _
-  _    @<c    _    _    _    _    _    _    _    _    _    _         _
+  lrld  @1en @2en @3en @4en @5en @6en @7en @8en @9en @0en  @dashc  @eqc  _
+  _    _    _    _    _    _    _    _    _    _    _    @åc   @¨c
+  @escc  @ac   @sc   @dc   @fc   _    _    @jc   @kc   @lc   @öc   @äc   @<c   _
+  _    @<c    _    _    _    _    _    _    _    _    _    @slashc        _
   _    _    _                   _                   @ralt-a    _    _    _
 )
 
@@ -107,10 +107,10 @@
 
 (deflayer shift-layer-coding
   caps
-  _    @s1  @s2  @s3  @s4  @s5  @s6  @s7  @s8  @s9  @s0   _    _    _
-  _    _    _    _    _    _    _    _    _    _    _     @Åc  @^c 
-  esc  @ac  @sc  @dc  @fc  _    _    @jc  @kc  @lc  @Öc   @Äc  _    _
-  _    @>c  _    _    _    _    _    _    _    @;c  @:c    _        _
+  _    @s1  @s2  @s3  @s4  @s5  @s6  @s7  @s8  @s9  @s0   @uscorec  @plusc  _
+  _    _    _    _    _    _    _    _    _    _    _     @Åc  @^c
+  esc  @ac  @sc  @dc  @fc  _    _    @jc  @kc  @lc  @Öc   @Äc  @>c   _
+  _    @>c  _    _    _    _    _    _    _    @;c  @:c    @qmc        _
   _    _    _                   _                   _      _    _    _
 )
 
@@ -128,21 +128,39 @@
   kc (tap-hold-release-keys $tap-time $hold-time-base (multi k @tapc) rctl $right-hand-keys)
   lc (tap-hold-release-keys $tap-time $hold-time-slow (multi l @tapc) lalt $right-hand-keys)
   
+  ;; coding number row - US English symbols
+  1en (multi lsft 1)  ;; !
+  2en (multi ralt 2)  ;; @
+  3en (multi lsft 3)  ;; #
+  4en (multi ralt 4)  ;; $
+  5en (multi lsft 5)  ;; %
+  6en (multi lsft ¨)  ;; ^ (dead key - press space after to resolve)
+  7en (multi lsft 6)  ;; &
+  8en (multi lsft ')  ;; *
+  9en (multi lsft 8)  ;; (
+  0en (multi lsft 9)  ;; )
+
   ;; unshifted coding aliases
   åc (multi ralt 8)
   ¨c (multi ralt 9)
   öc (multi lsft ,)
-  äc (multi ralt +)
-  <c (multi lsft ¨)
+  äc (unshift ')
+  <c (multi (unshift ralt +))
+  dashc  (unshift -)
+  eqc    (multi (unshift lsft 0))
+  slashc (multi lsft 7)
 
   ;; shifted coding aliases
   Åc (multi (unshift ralt 7))
   ^c (multi (unshift ralt 0))
   Öc (multi (unshift lsft .))
-  Äc (multi (unshift ralt <))
-  >c (multi (unshift ralt ¨))
+  Äc (multi (unshift lsft 2))
+  >c (multi (unshift ralt <))
   ;c (unshift <)
   :c (multi lsft <)
+  uscorec (multi lsft -)
+  plusc   (unshift +)
+  qmc     (multi lsft +)
 
 )
 (deffakekeys

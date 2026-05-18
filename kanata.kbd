@@ -128,27 +128,27 @@
   kc (tap-hold-release-keys $tap-time $hold-time-base (multi k @tapc) rctl $right-hand-keys)
   lc (tap-hold-release-keys $tap-time $hold-time-slow (multi l @tapc) lalt $right-hand-keys)
   
-  ;; coding number row - US English symbols
-  1en (multi lsft 1)  ;; !
-  2en (multi ralt 2)  ;; @
-  3en (multi lsft 3)  ;; #
-  4en (multi ralt 4)  ;; $
-  5en (multi lsft 5)  ;; %
-  6en (multi lsft ¨)  ;; ^ (dead key - press space after to resolve)
-  7en (multi lsft 6)  ;; &
-  8en (multi lsft ')  ;; *
-  9en (multi lsft 8)  ;; (
-  0en (multi lsft 9)  ;; )
+  ;; coding number row - US English symbols, fork for physical shift → digit
+  1en (fork (multi lsft 1)           (unshift 1) (lsft rsft))  ;; ! / 1
+  2en (fork (multi ralt 2)           (unshift 2) (lsft rsft))  ;; @ / 2
+  3en (fork (multi lsft 3)           (unshift 3) (lsft rsft))  ;; # / 3
+  4en (fork (multi ralt 4)           (unshift 4) (lsft rsft))  ;; $ / 4
+  5en (fork (multi lsft 5)           (unshift 5) (lsft rsft))  ;; % / 5
+  6en (fork (multi lsft ¨)           (unshift 6) (lsft rsft))  ;; ^ / 6
+  7en (fork (multi lsft 6)           (unshift 7) (lsft rsft))  ;; & / 7
+  8en (fork (multi lsft ')           (unshift 8) (lsft rsft))  ;; * / 8
+  9en (fork (multi lsft 8)           (unshift 9) (lsft rsft))  ;; ( / 9
+  0en (fork (multi lsft 9)           (unshift 0) (lsft rsft))  ;; ) / 0
 
-  ;; unshifted coding aliases
-  åc (multi ralt 8)
-  ¨c (multi ralt 9)
-  öc (multi lsft ,)
-  äc (unshift ')
-  <c (multi (unshift ralt +))
-  dashc  (unshift -)
-  eqc    (multi (unshift lsft 0))
-  slashc (multi lsft 7)
+  ;; coding key aliases - fork for physical shift → shifted variant
+  åc  (fork (multi ralt 8)           (multi (unshift ralt 7))  (lsft rsft))  ;; [ / {
+  ¨c  (fork (multi ralt 9)           (multi (unshift ralt 0))  (lsft rsft))  ;; ] / }
+  öc  (fork (multi lsft ,)           (multi (unshift lsft .))  (lsft rsft))  ;; ; / :
+  äc  (fork (unshift ')              (multi (unshift lsft 2))  (lsft rsft))  ;; ' / "
+  <c  (fork (multi (unshift ralt +)) (multi (unshift ralt <))  (lsft rsft))  ;; \ / |
+  dashc  (fork (unshift -)           (multi lsft -)            (lsft rsft))  ;; - / _
+  eqc    (fork (multi (unshift lsft 0)) (unshift +)            (lsft rsft))  ;; = / +
+  slashc (fork (multi lsft 7)        (multi lsft +)            (lsft rsft))  ;; / / ?
 
   ;; shifted coding aliases
   Åc (multi (unshift ralt 7))

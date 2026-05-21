@@ -77,14 +77,14 @@
     (on-idle-fakekey to-base tap 20)
   )
 
-  a (tap-hold-release-keys $tap-time $hold-time-win (multi a @tap) lmet $left-hand-keys)
+  a (tap-hold $tap-time $hold-time-win (multi a @tap) lmet)
   s (tap-hold-release-keys $tap-time $hold-time-slow (multi s @tap) lalt $left-hand-keys)
   d (tap-hold-release-keys $tap-time $hold-time-slow (multi d @tap) lctl $left-hand-keys)
   f (tap-hold-release-keys $tap-time $hold-time-base (multi f @tap) (multi lsft (layer-while-held shift-layer)) $left-hand-keys)
   j (tap-hold-release-keys $tap-time $hold-time-base (multi j @tap) (multi rsft (layer-while-held shift-layer)) $right-hand-keys)
   k (tap-hold-release-keys $tap-time $hold-time-base (multi k @tap) rctl $right-hand-keys)
   l (tap-hold-release-keys $tap-time $hold-time-slow (multi l @tap) lalt $right-hand-keys)
-  ö (tap-hold-release-keys $tap-time $hold-time-slow (multi ö @tap) rmet $right-hand-keys)
+  ö (tap-hold $tap-time $hold-time-slow (multi ö @tap) rmet)
 )
 
 (deflayer coding
@@ -120,7 +120,7 @@
     (on-idle-fakekey to-coding tap 20)
   )
 
-  ac (tap-hold-release-keys $tap-time $hold-time-win (multi a @tapc) lmet $left-hand-keys)
+  ac (tap-hold $tap-time $hold-time-win (multi a @tapc) lmet)
   sc (tap-hold-release-keys $tap-time $hold-time-slow (multi s @tapc) lalt $left-hand-keys)
   dc (tap-hold-release-keys $tap-time $hold-time-slow (multi d @tapc) lctl $left-hand-keys)
   fc (tap-hold-release-keys $tap-time $hold-time-base (multi f @tapc) (multi lsft (layer-while-held shift-layer-coding)) $left-hand-keys)
